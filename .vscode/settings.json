@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.packageManager": "npm",
+  "prettier.eslintIntegration": false,
+  "prettier.semi": false,
+  "prettier.singleQuote": true
+}
