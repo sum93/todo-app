@@ -1,0 +1,75 @@
+$switch-height: 2.5em;
+$switch-width: calc(30vw + 1.5em);
+$switch-border-radius: 0.625em;
+$switch-margin-bottom: 0.25em;
+
+$switch-color: silver;
+$switch-color-active: skyblue;
+
+$switch-after-margin: 0.25em;
+$switch-after-width: calc(#{$switch-width} / 2 - #{$switch-after-margin});
+$switch-after-height: $switch-height - 2 * $switch-after-margin;
+$switch-after-border-radius: $switch-border-radius - $switch-after-margin / 2;
+
+$switch-set-after-left: calc(#{$switch-width} / 2);
+
+$switch-transition-time: 0.75s;
+
+$switch-label-margin: $switch-after-margin;
+
+.undone-switch {
+  position: relative;
+  display: flex;
+  width: $switch-width;
+  height: $switch-height;
+  margin-bottom: $switch-margin-bottom;
+  border-radius: $switch-border-radius;
+  line-height: $switch-height;
+  background-color: $switch-color;
+  transition: background-color $switch-transition-time ease;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: $switch-after-border-radius;
+    margin: $switch-after-margin 0 $switch-after-margin $switch-after-margin;
+    left: 0;
+    width: $switch-after-width;
+    height: $switch-after-height;
+    background-color: white;
+    z-index: 10;
+    transition: all $switch-transition-time ease-out;
+  }
+
+  &__set {
+    background-color: $switch-color-active;
+
+    &::after {
+      margin: $switch-after-margin $switch-after-margin $switch-after-margin 0;
+      left: $switch-set-after-left;
+    }
+  }
+}
+
+.label {
+  width: 50%;
+  text-align: center;
+  z-index: 20;
+  user-select: none;
+  transition: color $switch-transition-time ease;
+
+  &__set {
+    margin-right: $switch-label-margin;
+    &.active {
+      color: $switch-color-active;
+    }
+  }
+
+  &__unset {
+    margin-left: $switch-label-margin;
+    &.active {
+      color: $switch-color;
+    }
+  }
+}

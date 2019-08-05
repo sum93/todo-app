@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { observer } from 'mobx-react'
 
 import './App.css'
 import BorderWrapper from './BorderWrapper'
 import Todo from './Todo'
-import { observer } from 'mobx-react'
+import UndoneSwitch from './components/UndoneSwitch/UndoneSwitch'
 
 const App = observer(({ todoState }) => {
   const [state, setState] = useState({
-    editingNewTodo: false
+    editingNewTodo: false,
+    onlyUndone: false
   })
 
   useEffect(() => {
@@ -22,6 +24,17 @@ const App = observer(({ todoState }) => {
     setState(state => ({ ...state, editingNewTodo: false }))
   }
 
+  const toggleOnlyUndone = () => {
+    setState(state => ({ ...state, onlyUndone: !state.onlyUndone }))
+  }
+
+  const unreadFilter = todo => {
+    if (state.onlyUndone) {
+      return !todo.completed
+    }
+    return true
+  }
+
   return (
     <div className="app">
       <header className="app--header">Todos App</header>
@@ -30,7 +43,8 @@ const App = observer(({ todoState }) => {
           'Loading...'
         ) : (
           <React.Fragment>
-            {todoState.todos.map(todo => (
+            <UndoneSwitch isSet={state.onlyUndone} toggle={toggleOnlyUndone} />
+            {todoState.todos.filter(unreadFilter).map(todo => (
               <Todo
                 key={todo.id}
                 todo={todo}
