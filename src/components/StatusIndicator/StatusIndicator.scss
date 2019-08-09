@@ -6,7 +6,7 @@ $status-indicator-background-color: silver !default;
 $status-indicator-transition-duration: 1s !default;
 $status-indicator-padding: 0.25rem !default;
 
-$status-indicator-last-child-margin-bottom: 0 !default;
+$status-indicator-no-gap-margin-bottom: 0 !default;
 
 $status-indicator-done-background-color: lightgreen;
 
@@ -34,8 +34,8 @@ $status-indicator-busy-after-animation-duration: 2s;
   padding: $status-indicator-padding;
   box-sizing: border-box;
 
-  &:last-child {
-    margin-bottom: $status-indicator-last-child-margin-bottom;
+  &__no-gap {
+    margin-bottom: $status-indicator-no-gap-margin-bottom;
   }
 
   &__done {

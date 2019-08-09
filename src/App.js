@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { observer } from 'mobx-react'
 
 import './App.scss'
@@ -45,18 +46,21 @@ const App = observer(({ todoState }) => {
         ) : (
           <div className="app--container">
             <UndoneSwitch isSet={state.onlyUndone} toggle={toggleOnlyUndone} />
-            {todoState.todos.filter(unreadFilter).map(todo => (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                deleteTodo={() => todoState.deleteTodo(todo.id)}
-                editMessage={message => todo.setUpdatedMessage(message)}
-                toggleCompleteness={() => todo.toggleCompleteness()}
-                updateMessage={updatedMessage =>
-                  todo.updateMessage(updatedMessage)
-                }
-              />
-            ))}
+            <TransitionGroup>
+              {todoState.todos.filter(unreadFilter).map(todo => (
+                <CSSTransition key={todo.id} timeout={1000}>
+                  <Todo
+                    todo={todo}
+                    deleteTodo={() => todoState.deleteTodo(todo.id)}
+                    editMessage={message => todo.setUpdatedMessage(message)}
+                    toggleCompleteness={() => todo.toggleCompleteness()}
+                    updateMessage={updatedMessage =>
+                      todo.updateMessage(updatedMessage)
+                    }
+                  />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
             <StatusIndicator
               isBusy={todoState.addingTodo}
               isEditing={state.editingNewTodo}
