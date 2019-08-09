@@ -1,0 +1,11 @@
+$loading-pulse-left-0: -10vw !default;
+$loading-pulse-left-100: 60vw !default;
+
+@keyframes loading-pulse {
+  0% {
+    left: $loading-pulse-left-0;
+  }
+  100% {
+    left: $loading-pulse-left-100;
+  }
+}

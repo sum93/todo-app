@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 
-import './App.css'
-import BorderWrapper from './BorderWrapper'
-import Todo from './Todo'
+import './App.scss'
+import StatusIndicator from './components/StatusIndicator/StatusIndicator'
+import Todo from './components/Todo/Todo'
+import TodoForm from './components/TodoForm/TodoForm'
 import UndoneSwitch from './components/UndoneSwitch/UndoneSwitch'
 
 const App = observer(({ todoState }) => {
@@ -42,7 +43,7 @@ const App = observer(({ todoState }) => {
         {todoState.loading ? (
           'Loading...'
         ) : (
-          <React.Fragment>
+          <div className="app--container">
             <UndoneSwitch isSet={state.onlyUndone} toggle={toggleOnlyUndone} />
             {todoState.todos.filter(unreadFilter).map(todo => (
               <Todo
@@ -56,23 +57,18 @@ const App = observer(({ todoState }) => {
                 }
               />
             ))}
-            <BorderWrapper
+            <StatusIndicator
               isBusy={todoState.addingTodo}
               isEditing={state.editingNewTodo}
             >
-              <form
-                className="todo--form"
+              <TodoForm
+                onBlur={unsetEditingTodo}
+                onFocus={setEditingTodo}
                 onSubmit={event => todoState.createTodo(event)}
-              >
-                <input
-                  className="todo--input"
-                  onBlur={unsetEditingTodo}
-                  onFocus={setEditingTodo}
-                  placeholder="Add new todo..."
-                />
-              </form>
-            </BorderWrapper>
-          </React.Fragment>
+                placeholder="Add new todo..."
+              />
+            </StatusIndicator>
+          </div>
         )}
       </main>
     </div>

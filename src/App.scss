@@ -1,0 +1,46 @@
+$app-container-margin: 1rem !default;
+$app-container-max-width: 25rem !default;
+$app-container-min-width: 15rem !default;
+$app-container-width: 50vw !default;
+
+$app-header-background-color: skyblue;
+$app-header-color: white;
+$app-header-font-size: 2rem !default;
+$app-header-font-weight: 900 !default;
+$app-header-height: 6rem !default;
+$app-header-letter-spacing: 1rem !default;
+
+$app-main-background-color: whitesmoke !default;
+$app-main-min-height: calc(100vh - #{$app-header-height}) !default;
+
+.app {
+  &--header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: $app-header-height;
+    background-color: $app-header-background-color;
+    font-size: $app-header-font-size;
+    color: $app-header-color;
+    font-weight: $app-header-font-weight;
+    letter-spacing: $app-header-letter-spacing;
+    text-align: center;
+  }
+
+  &--main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: $app-main-min-height;
+    background-color: $app-main-background-color;
+  }
+
+  &--container {
+    margin: $app-container-margin;
+    width: $app-container-width;
+    max-width: $app-container-max-width;
+    min-width: $app-container-min-width;
+  }
+}

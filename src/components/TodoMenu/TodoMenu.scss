@@ -1,0 +1,17 @@
+$todo-menu-right: 0.5rem;
+$todo-menu-opacity: 0;
+$todo-menu-transition-duration: 0.2s;
+$todo-menu-z-index: 30;
+$todo-menu-visible-opacity: 1;
+
+.todo-menu {
+  position: absolute;
+  right: $todo-menu-right;
+  opacity: $todo-menu-opacity;
+  transition: opacity $todo-menu-transition-duration ease-in;
+  z-index: $todo-menu-z-index;
+
+  &.todo-menu__visible {
+    opacity: $todo-menu-visible-opacity;
+  }
+}

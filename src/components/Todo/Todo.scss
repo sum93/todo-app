@@ -1,0 +1,21 @@
+$todo-span-height: 100%;
+$todo-span-width: 100%;
+$todo-span-padding-horizontal: 0.5rem;
+$todo-span-padding-vertical: 0;
+$todo-span-border-radius: 0.5rem;
+$todo-span-background-color: white;
+$todo-span-line-height: 2em;
+$todo-span-z-index: 20;
+
+.todo {
+  &--span {
+    height: $todo-span-height;
+    width: $todo-span-width;
+    padding: $todo-span-padding-vertical $todo-span-padding-horizontal;
+    border-radius: $todo-span-border-radius;
+    background-color: $todo-span-background-color;
+    line-height: $todo-span-line-height;
+    z-index: $todo-span-z-index;
+    cursor: default;
+  }
+}

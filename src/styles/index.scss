@@ -1,0 +1,21 @@
+// settings
+@import './settings/colors.scss';
+@import './settings/fonts.scss';
+@import './settings/variables.scss';
+
+// tools
+
+// generic
+@import './generic/normalize.css';
+@import './generic/reset.css';
+
+// elements
+@import './elements.scss';
+
+// objects
+@import './objects/animations.scss';
+
+// components
+
+// utilities
+@import './utilities/icons.scss';

@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import todoState from './TodoState'
+
+import './styles/index.scss'
 
 ReactDOM.render(<App todoState={todoState} />, document.getElementById('root'))
 

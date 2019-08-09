@@ -1,0 +1,68 @@
+$status-indicator-height: 2.5rem !default;
+$status-indicator-width: 100% !default;
+$status-indicator-border-radius: 0.625rem !default;
+$status-indicator-margin-bottom: 0.25rem !default;
+$status-indicator-background-color: silver !default;
+$status-indicator-transition-duration: 1s !default;
+$status-indicator-padding: 0.25rem !default;
+
+$status-indicator-last-child-margin-bottom: 0 !default;
+
+$status-indicator-done-background-color: lightgreen;
+
+$status-indicator-editing-background-color: skyblue;
+
+$status-indicator-busy-background-color: skyblue;
+
+$status-indicator-busy-after-height: $status-indicator-height;
+$status-indicator-busy-after-width: $status-indicator-width / 3;
+$status-indicator-busy-after-z-index: 10;
+$status-indicator-busy-after-animation-duration: 2s;
+
+.status-indicator {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $status-indicator-height;
+  width: $status-indicator-width;
+  border-radius: $status-indicator-border-radius;
+  margin-bottom: $status-indicator-margin-bottom;
+  background-color: $status-indicator-background-color;
+  transition: background-color $status-indicator-transition-duration ease;
+  overflow: hidden;
+  padding: $status-indicator-padding;
+  box-sizing: border-box;
+
+  &:last-child {
+    margin-bottom: $status-indicator-last-child-margin-bottom;
+  }
+
+  &__done {
+    background-color: $status-indicator-done-background-color;
+  }
+
+  &__editing {
+    background-color: $status-indicator-editing-background-color;
+  }
+
+  &__busy {
+    background-color: $status-indicator-busy-background-color;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: $status-indicator-busy-after-height;
+      width: $status-indicator-busy-after-width;
+      background-image: linear-gradient(
+        to left,
+        $status-indicator-busy-background-color,
+        white,
+        $status-indicator-busy-background-color
+      );
+      z-index: $status-indicator-busy-after-z-index;
+      animation: loading-pulse $status-indicator-busy-after-animation-duration
+        ease infinite;
+    }
+  }
+}

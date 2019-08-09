@@ -1,0 +1,15 @@
+$icon-padding-horizontal: 0.25rem;
+$icon-padding-vertical: 0;
+
+.svg-inline--fa {
+  padding: $icon-padding-vertical $icon-padding-horizontal;
+  cursor: pointer;
+}
+
+.fa-check-circle {
+  color: lightgreen;
+}
+
+.fa-trash-alt {
+  color: tomato;
+}

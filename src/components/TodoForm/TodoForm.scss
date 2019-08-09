@@ -1,0 +1,26 @@
+$todo-form-width: 100%;
+$todo-form-z-index: 20;
+
+$todo-form-input-height: 2rem;
+$todo-form-input-width: 100%;
+$todo-form-input-padding-horizontal: 0.5rem;
+$todo-form-input-padding-vertical: 0;
+$todo-form-input-margin: 0;
+$todo-form-input-border-radius: 0.5rem;
+$todo-form-input-line-height: 2rem;
+
+.todo-form {
+  width: $todo-form-width;
+  z-index: $todo-form-z-index;
+
+  &--input {
+    height: $todo-form-input-height;
+    width: $todo-form-input-width;
+    padding: $todo-form-input-padding-vertical
+      $todo-form-input-padding-horizontal;
+    border: none;
+    border-radius: $todo-form-input-border-radius;
+    $todo-form-input-line-height: $todo-form-input-line-height;
+    box-sizing: border-box;
+  }
+}
