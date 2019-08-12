@@ -2,9 +2,10 @@ $undone-switch-height: 2.5em;
 $undone-switch-width: 100%;
 $undone-switch-border-radius: 0.625em;
 $undone-switch-margin-bottom: 0.25em;
+$undone-switch-color: white;
 
-$undone-switch-color: silver;
-$undone-switch-color-active: skyblue;
+$undone-switch-button-color: silver;
+$undone-switch-button-color-active: skyblue;
 
 $undone-switch-after-margin: 0.25em;
 $undone-switch-after-width: calc(
@@ -32,8 +33,9 @@ $undone-switch-label-z-index: 20;
   height: $undone-switch-height;
   margin-bottom: $undone-switch-margin-bottom;
   border-radius: $undone-switch-border-radius;
+  color: $undone-switch-color;
   line-height: $undone-switch-height;
-  background-color: $undone-switch-color;
+  background-color: $undone-switch-button-color;
   transition: background-color $undone-switch-transition-time ease;
   cursor: pointer;
 
@@ -52,7 +54,7 @@ $undone-switch-label-z-index: 20;
   }
 
   &__set {
-    background-color: $undone-switch-color-active;
+    background-color: $undone-switch-button-color-active;
 
     &::after {
       margin: $undone-switch-after-margin $undone-switch-after-margin
@@ -72,14 +74,14 @@ $undone-switch-label-z-index: 20;
   &__set {
     margin-right: $undone-switch-label-margin;
     &.active {
-      color: $undone-switch-color-active;
+      color: $undone-switch-button-color-active;
     }
   }
 
   &__unset {
     margin-left: $undone-switch-label-margin;
     &.active {
-      color: $undone-switch-color;
+      color: $undone-switch-button-color;
     }
   }
 }

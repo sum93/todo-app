@@ -1,23 +1,13 @@
-.enter {
-  // height: 0;
-  // font-size: 0;
-}
+// .enter {
+// }
 
 .enter-active {
-  // height: 1.5em;
-  // font-size: 32px;
-  // transition: all 1000ms ease-in;
   animation: todo-movement 1s reverse;
 }
 
-.exit {
-  // height: 1.5em;
-  // font-size: 32px;
-}
+// .exit {
+// }
 
 .exit-active {
-  // height: 0;
-  // font-size: 0;
-  // transition: all 1000ms ease-in;
   animation: todo-movement 1s;
 }

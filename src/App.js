@@ -3,6 +3,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { observer } from 'mobx-react'
 
 import './App.scss'
+import Button from './components/Button/Button'
+import Spinner from './components/Spinner/Spinner'
 import StatusIndicator from './components/StatusIndicator/StatusIndicator'
 import Todo from './components/Todo/Todo'
 import TodoForm from './components/TodoForm/TodoForm'
@@ -42,7 +44,7 @@ const App = observer(({ todoState }) => {
       <header className="app--header">Todos App</header>
       <main className="app--main">
         {todoState.loading ? (
-          'Loading...'
+          <Spinner />
         ) : (
           <div className="app--container">
             <UndoneSwitch isSet={state.onlyUndone} toggle={toggleOnlyUndone} />
@@ -62,7 +64,7 @@ const App = observer(({ todoState }) => {
               ))}
             </TransitionGroup>
             <StatusIndicator
-              isBusy={todoState.addingTodo}
+              isBusy={todoState.busyCreating}
               isEditing={state.editingNewTodo}
             >
               <TodoForm
@@ -72,6 +74,12 @@ const App = observer(({ todoState }) => {
                 placeholder="Add new todo..."
               />
             </StatusIndicator>
+            <Button
+              isBusy={todoState.busyRemovingDone}
+              isDisabled={!todoState.hasDone}
+              label="Remove done"
+              onClick={() => todoState.removeDone()}
+            />
           </div>
         )}
       </main>

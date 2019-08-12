@@ -1,0 +1,50 @@
+$width: 100%;
+$loader-width: $width / 3;
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 2.5rem;
+  width: $width;
+  border-radius: 0.625rem;
+  background-color: tomato;
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+
+  &:hover {
+    background-color: lightsalmon;
+  }
+
+  &__disabled {
+    background-color: silver;
+
+    &:hover {
+      background-color: silver;
+    }
+  }
+
+  &__busy {
+    &:hover {
+      background-color: tomato;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 2.5rem;
+      width: $loader-width;
+      background-image: linear-gradient(to left, tomato, white, tomato);
+      z-index: 10;
+      animation: loading-pulse 2s ease infinite;
+    }
+  }
+
+  &--label {
+    line-height: 2.5rem;
+    color: white;
+    z-index: 20;
+  }
+}

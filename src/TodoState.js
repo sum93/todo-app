@@ -1,6 +1,7 @@
 import { observable } from 'mobx'
 
 import TodoService from './TodoService'
+import { doneCountReducer, hasDoneReducer, notCompletedFilter } from './utils'
 
 const createTodo = todo =>
   observable({
@@ -35,9 +36,13 @@ const createTodo = todo =>
   })
 
 const todoState = observable({
-  addingTodo: false,
+  busyCreating: false,
+  busyRemovingDone: false,
   loading: false,
   todos: [],
+  get hasDone() {
+    return this.todos.reduce(hasDoneReducer, false)
+  },
   fetchTodos: function() {
     this.loading = true
     TodoService.getTodos().then(res => {
@@ -46,13 +51,13 @@ const todoState = observable({
     })
   },
   createTodo: function(event) {
-    this.addingTodo = true
+    this.busyCreating = true
 
     event.persist()
     TodoService.createTodo(event.target.firstChild.value).then(res => {
       event.target.firstChild.value = ''
       this.todos.push(createTodo(res.data))
-      this.addingTodo = false
+      this.busyCreating = false
     })
 
     event.preventDefault()
@@ -68,6 +73,19 @@ const todoState = observable({
         this.todos.find(todo => id === todo.id).setBusy(false)
       }
     })
+  },
+  removeDone: function() {
+    this.busyRemovingDone = true
+    const toDeleteTodoCount = this.todos.reduce(doneCountReducer, 0)
+    TodoService.removeDone()
+      .then(res => {
+        if (res.data === toDeleteTodoCount) {
+          this.todos = this.todos.filter(notCompletedFilter)
+        }
+      })
+      .finally(() => {
+        this.busyRemovingDone = false
+      })
   }
 })
 

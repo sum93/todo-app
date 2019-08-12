@@ -18,9 +18,12 @@ const removeTodo = id => client.delete(`/${id}`)
 const updateTodo = (id, todo) =>
   client.patch(`/${id}`, { data: { todo: todoParser(todo) } })
 
+const removeDone = () => client.delete('/')
+
 export default {
   getTodos,
   createTodo,
   removeTodo,
-  updateTodo
+  updateTodo,
+  removeDone
 }
